@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Sentiment Analyzer</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<div class="container">
+  <h2>AI Based Sentiment Analyzer</h2>
+
+  <form method="POST">
+    <textarea name="text" placeholder="Type a sentence..." required></textarea>
+    <button type="submit">Analyze</button>
+  </form>
+
+  {% if result %}
+    <div class="result {{ result }}">{{ result }}</div>
+  {% endif %}
+
+  <a href="/history">View History</a>
+</div>
+
+</body>
+</html>

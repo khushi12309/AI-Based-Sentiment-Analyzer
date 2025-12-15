@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>History</title>
+  <link rel="stylesheet" href="/static/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+<div class="container">
+  <h2>Sentiment History</h2>
+
+  <canvas id="chart" width="200" height="200"></canvas>
+
+  <table>
+    <tr><th>Text</th><th>Sentiment</th></tr>
+    {% for text, sentiment in history %}
+    <tr>
+      <td>{{ text }}</td>
+      <td class="{{ sentiment }}">{{ sentiment }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+
+  <a href="/">Back</a>
+</div>
+
+<script>
+new Chart(document.getElementById("chart"), {
+  type: "pie",
+  data: {
+    labels: ["Positive", "Negative", "Neutral"],
+    datasets: [{
+      data: [
+        {{ counts["Positive"] }},
+        {{ counts["Negative"] }},
+        {{ counts["Neutral"] }}
+      ]
+    }]
+  },
+  options: { responsive: false }
+});
+</script>
+
+</body>
+</html>
